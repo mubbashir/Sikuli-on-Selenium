@@ -1,0 +1,4 @@
+bin
+test-output
+.DS_Store
+*.log
