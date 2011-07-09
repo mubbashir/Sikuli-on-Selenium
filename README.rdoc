@@ -1,0 +1,6 @@
+= Sikuli on Selenium 
+
+Sikuli on Selenium is a demonstration of how one can use Sikuli and Selenium together to automate almost every thing related to web automation.
+To show how they are working together a flash file uploader (http://demo.swfupload.org/v220/overlaydemo/index.php) is automated using selenium 2.0 and Sikuli
+
+Find out more about Selenium at http://seleniumhq.org/ and visit http://sikuli.org/ for information about sikuli.
