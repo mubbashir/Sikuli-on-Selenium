@@ -1,0 +1,43 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Sikuli on Selenium- Demonstration via Flash File Uploader">
+
+	<parameter name="selenium.site.under.test"
+		value="http://demo.swfupload.org/v220/overlaydemo/index.php" />
+	<parameter name="sikuli.image.dir"
+		value="/Users/mubbashir/Documents/workspace/SikuliOnSelenium/img" />
+	<parameter name="sikuli.image.to.upload.dir" value="/Users/mubbashir/Desktop/" />
+	<!--
+		use only image file names, these are concatenated with
+		sikuli.image.dir
+	-->
+	<parameter name="sikuli.file.upload.element" value="SelectFile.png" />
+	<parameter name="sikuli.browse.file.dialog" value="Selectfileto.png" />
+	<parameter name="sikuli.browse.file.dialog" value="Selectfileto.png" />
+	<parameter name="sikuli.browse.file.dialog.go.button" value="G0.png" />
+	<parameter name="sikuli.file.to.select" value="mohen_jo_daro.png" />
+	<parameter name="sikuli.browse.file.dialog.open.button"
+		value="Open-1.png" />
+	<parameter name="selenium.element.to.validate.css.locator"
+		value="div.progressContainer.blue" />
+	<parameter name="selenium.element.to.validate.text" value="mohen_jo_daro_preist.jpeg\s+Complete." />
+	<parameter name="selenium.validation.time.out" value="10" />
+	<!-- Since there will be one screen, its seems a good idea to initialize it for the entire suite -->
+	<test name="00 Initialize Screen">
+		<classes>
+			<class name="com.test.sikuli.demo.SikuliUtil">
+
+			</class>
+		</classes>
+	</test>
+
+	<test name="Upload File via Flash Uploader" preserve-order="true">
+		<classes>
+			<class name="com.test.sikuli.demo.FlashUploadViaSikuli">
+				<methods>
+					<include name="uploadViaSikuli" />
+				</methods>
+			</class>
+
+		</classes>
+	</test>
+</suite>

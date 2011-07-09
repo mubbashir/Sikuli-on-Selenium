@@ -1,5 +1,6 @@
 package com.test.sikuli.demo;
 
+import static com.test.sikuli.demo.SikuliUtil.screen;
 import static com.test.sikuli.demo.SikuliUtil.screenPageDownUntillVisible;
 import static com.test.sikuli.demo.SikuliUtil.screenWaitAndClick;
 
@@ -10,7 +11,6 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.sikuli.script.FindFailed;
-import org.sikuli.script.Screen;
 import org.testng.Assert;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterClass;
@@ -20,10 +20,9 @@ import org.testng.annotations.Test;
 public class FlashUploadViaSikuli {
 	WebDriver driver;
 
-	String currentDir = System.getProperty("user.dir");
 	private static Logger logger = Logger
 			.getLogger("com.test.sikuli.demo.FlashUploadViaSikuli");
-	Screen screen;
+	
 
 	@BeforeClass
 	public void initBrowser() {
@@ -36,15 +35,27 @@ public class FlashUploadViaSikuli {
 
 	}
 
-	@BeforeClass
-	public void initScreen() {
-		screen = new Screen();
-	}
+	
 
 	@Test
-	public void uploadViaSikuli(ITestContext c) throws FindFailed, InterruptedException {
+	public void uploadViaSikuli(ITestContext context) throws FindFailed,
+			InterruptedException {
+		String imageDir = context.getCurrentXmlTest().getParameter(
+				"sikuli.image.dir");
+		String imageToUploadDir = context.getCurrentXmlTest().getParameter(
+				"sikuli.image.to.upload.dir");
 
-		driver.get("http://demo.swfupload.org/v220/overlaydemo/index.php");
+		String elementToValidate = context.getCurrentXmlTest().getParameter(
+				"selenium.element.to.validate.css.locator");
+		String elementToValidateText = context.getCurrentXmlTest()
+				.getParameter("selenium.element.to.validate.text");
+		int validationWaitTimeOut = Integer.parseInt(context.getCurrentXmlTest()
+				.getParameter("selenium.validation.time.out"));
+		
+
+		driver.get(context.getCurrentXmlTest().getParameter(
+				"selenium.site.under.test"));
+
 		driver.switchTo().window(driver.getWindowHandle());
 		logger.info("Setting focus to the window");
 		((JavascriptExecutor) driver).executeScript("window.focus()");
@@ -52,32 +63,53 @@ public class FlashUploadViaSikuli {
 		// User either the below of more sikuli oriented one to open file dialog
 
 		// driver.findElement(By.id("btnUpload")).click();
-		logger.info("Asking screen to find and click " + currentDir
+		logger.info("Asking screen to find and click " + imageDir
 				+ "/images/SelectFile.png");
 		// String currentDir = System.getProperty("user.dir");
 
-		screenWaitAndClick(screen, currentDir + "/img/SelectFile.png", 0);
-		screenWaitAndClick(screen, currentDir + "/img/Selectfileto.png", 10);
+		screenWaitAndClick(imageDir
+				+ "/"
+				+ context.getCurrentXmlTest().getParameter(
+						"sikuli.file.upload.element"), 0);
+		screenWaitAndClick( imageDir
+				+ "/"
+				+ context.getCurrentXmlTest().getParameter(
+						"sikuli.browse.file.dialog"), 10);
 
-		screen.type(null, "/Users/mubbashir/Desktop/", 0);
-		screenWaitAndClick(screen, currentDir + "/img/G0.png", 10);
-		screenPageDownUntillVisible(screen, currentDir+ "/img/mohen_jo_daro.png", 5);
+		screen.type(null, imageToUploadDir, 0);
+		screenWaitAndClick( imageDir
+				+ "/"
+				+ context.getCurrentXmlTest().getParameter(
+						"sikuli.browse.file.dialog.go.button"), 10);
+		screenPageDownUntillVisible(imageDir
+				+ "/"
+				+ context.getCurrentXmlTest().getParameter(
+						"sikuli.file.to.select"), 5);
 		logger.info("Folder opened and file visible");
-		screen.click(currentDir + "/img/mohen_jo_daro.png", 0);
-		screen.click(currentDir + "/img/Open-1.png", 0);
+		screen.click(imageDir
+				+ "/"
+				+ context.getCurrentXmlTest().getParameter(
+						"sikuli.file.to.select"), 0);
+		screen.click(imageDir
+				+ "/"
+				+ context.getCurrentXmlTest().getParameter(
+						"sikuli.browse.file.dialog.open.button"), 0);
 		logger.info("File selected and clicked on open to upload it");
+		logger.info("Validating Element: "+ elementToValidate+" To have text: "+ elementToValidateText);
+		String textOnElement="";
 		for (int second = 0;; second++) {
-			if (second >= 10) Assert.fail("Timeout");
-			try { 
-				logger.info(" text: "+ driver.findElement(By.cssSelector("div.progressContainer.blue")).getText());
-				if ("mohen_jo_daro_preist.jpeg\nComplete.".equals(
-						driver.findElement(By.cssSelector("div.progressContainer.blue")).getText()))
-					break; 
-				} catch (Exception e) {}
+			if (second >= validationWaitTimeOut)
+				Assert.fail("Timeout");
+			try {
+				textOnElement = driver.findElement(By.cssSelector(elementToValidate)).getText();
+				logger.info(" text on element: "+textOnElement +", is to be matched with "+ elementToValidateText
+						+" = "+textOnElement.matches(elementToValidateText));
+				if (textOnElement.matches(elementToValidateText))
+					break;
+			} catch (Exception e) {
+			}
 			Thread.sleep(1000);
 		}
-
-
 
 	}
 

@@ -2,9 +2,17 @@ package com.test.sikuli.demo;
 
 import org.sikuli.script.FindFailed;
 import org.sikuli.script.Screen;
+import org.testng.annotations.BeforeSuite;
 
 public class SikuliUtil {
-	public static boolean screenWaitAndClick(Screen screen, String regionImagePath, int timeOut){
+	
+	public static Screen screen;
+	
+	@BeforeSuite
+	public void initScreen() {
+		screen = new Screen();
+	}
+	public static boolean screenWaitAndClick( String regionImagePath, int timeOut){
 		boolean result = false;
 		
 		
@@ -21,7 +29,7 @@ public class SikuliUtil {
 		return result;
 	}
 	
-	public static boolean screenPageDownUntillVisible(Screen screen, String region, int pageDownCountOut) {
+	public static boolean screenPageDownUntillVisible( String region, int pageDownCountOut) {
 		boolean result = false;
 		try {
 			for (int second = 0;; second++) {
