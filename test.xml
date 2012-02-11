@@ -5,21 +5,19 @@
 		value="http://demo.swfupload.org/v220/overlaydemo/index.php" />
 	<parameter name="sikuli.image.dir"
 		value="/Users/mubbashir/Documents/workspace/SikuliOnSelenium/img" />
-	<parameter name="sikuli.image.to.upload.dir" value="/Users/mubbashir/Desktop/" />
+	<parameter name="sikuli.image.to.upload.dir" value="/Users/mubbashir/Documents/workspace/SikuliOnSelenium/img" />
 	<!--
 		use only image file names, these are concatenated with
 		sikuli.image.dir
 	-->
-	<parameter name="sikuli.file.upload.element" value="SelectFile.png" />
+	<parameter name="sikuli.file.upload.element" value="SelectFile-f.png" />
 	<parameter name="sikuli.browse.file.dialog" value="Selectfileto.png" />
-	<parameter name="sikuli.browse.file.dialog" value="Selectfileto.png" />
-	<parameter name="sikuli.browse.file.dialog.go.button" value="G0.png" />
-	<parameter name="sikuli.file.to.select" value="mohen_jo_daro.png" />
-	<parameter name="sikuli.browse.file.dialog.open.button"
-		value="Open-1.png" />
+	<parameter name="sikuli.browse.file.dialog.go.button" value="Go_l.png" />
+	<parameter name="sikuli.file.to.select" value="mohenjo_daro_to_click.png" />
+	<parameter name="sikuli.browse.file.dialog.open.button" value="Open_l.png" />
 	<parameter name="selenium.element.to.validate.css.locator"
 		value="div.progressContainer.blue" />
-	<parameter name="selenium.element.to.validate.text" value="mohen_jo_daro_preist.jpeg\s+Complete." />
+	<parameter name="selenium.element.to.validate.text" value="mohen_jo_daro.png\s+Complete." />
 	<parameter name="selenium.validation.time.out" value="10" />
 	<!-- Since there will be one screen, its seems a good idea to initialize it for the entire suite -->
 	<test name="00 Initialize Screen">
