@@ -11,24 +11,22 @@ Changes:
 * Changed the Driver from chrome to Firefox
 * Added and using images for OS X lion and Firefox
 
-git status: 
- On branch master
- 	modified:   .classpath
-	modified:   .project
-	modified:   README.rdoc
-	deleted:    lib/selenium-server-standalone-2.0.0.jar
-	deleted:    lib/testng-6.0.1.jar
-	deleted:    src/com/test/sikuli/demo/FlashUploadViaSikuli.java
-	deleted:    src/com/test/sikuli/demo/SikuliUtil.java
-	modified:   test.xml
+git status::
+On branch master 
+ modified:   .classpath
+ modified:   .project
+ modified:   README.rdoc
+ deleted:    lib/selenium-server-standalone-2.0.0.jar
+ deleted:    lib/testng-6.0.1.jar
+ deleted:    src/com/test/sikuli/demo/FlashUploadViaSikuli.java
+ deleted:    src/com/test/sikuli/demo/SikuliUtil.java
+ modified:   test.xml
 
- Untracked files:
-   (use "git add <file>..." to include in what will be committed)
-
-	.settings/
-	img/Go_l.png
-	img/Open_l.png
-	img/SelectFile-f.png
-	img/mohenjo_daro_to_click.png
-	pom.xml
-	src/test/
+Untracked files
+ .settings/
+ img/Go_l.png
+ img/Open_l.png
+ img/SelectFile-f.png
+ img/mohenjo_daro_to_click.png
+ pom.xml
+ src/test/
